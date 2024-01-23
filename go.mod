@@ -3,7 +3,7 @@ module github.com/Drelf2018/gins
 go 1.18
 
 require (
-	github.com/Drelf2018/TypeGo v0.7.3
+	github.com/Drelf2018/TypeGo v0.7.4
 	github.com/gin-gonic/gin v1.9.1
 )
 

@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Auth struct{}
+type Auth int
 
 func (Auth) Use(c *gin.Context) {
 	uid := c.Query("uid")
@@ -22,7 +22,7 @@ func (Auth) GetPing(c *gin.Context) {
 	c.JSON(200, gin.H{"msg": "hello " + c.GetString("uid")})
 }
 
-type Admin struct{}
+type Admin bool
 
 func (*Admin) Use(c *gin.Context) {
 	if c.GetString("uid") != "admin" {
@@ -49,9 +49,9 @@ func (Main) StaticFileIcon() (string, string) {
 }
 
 func TestGin(t *testing.T) {
-	r, err := gins.Default(Main{Admin: &Admin{}})
+	r, err := gins.Default(Main{})
 	if err != nil {
 		t.Fatal(err)
 	}
-	r.Run()
+	r.Run("localhost:9000")
 }
